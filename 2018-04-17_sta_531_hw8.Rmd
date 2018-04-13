@@ -1,0 +1,27 @@
+---
+title: "Sta 531 HW8 (the one that made my soul cry out for this to end)"
+author: "Daniel Truver"
+date: "4/12/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### (1) Bidirectional Dependence
+
+By the Markov property, we know that $X_i$ is independent of $X_{j<i}$ given $X_{i-1}$. If we think of this a graphical model, we know that
+$$
+X_k \perp \{ X_{j<k} \notin Pa(X_k) \} \mid Pa(X_k).
+$$
+
+Take $k > i+1$ in the above theorem and we see that, given $X_{i+1}$, $X_{j>i}\perp X_i$.
+
+Now, let's consider the case where we are given only $X_{i-1}$. Then, we can invoke the if and only if definition of d-separation. 
+$$
+A \perp B \mid S \iff S \text{ d-separates } A, B
+$$
+
+Take $A = \{X_i\}, B = \{X_{j>i}\}, S = \{X_{i-1}\}$ in the above. Clearly, $S$ does not separated $A$ and $B$, and we see that we do not get independence of $X_i$ from its descendants.
+
