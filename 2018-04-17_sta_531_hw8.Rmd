@@ -2,6 +2,8 @@
 title: "Sta 531 HW8 (the one that made my soul cry out for this to end)"
 author: "Daniel Truver"
 date: "4/12/2018"
+header-includes:
+  - \usepackage{amsmath}
 output: pdf_document
 ---
 
@@ -24,4 +26,41 @@ A \perp B \mid S \iff S \text{ d-separates } A, B
 $$
 
 Take $A = \{X_i\}, B = \{X_{j>i}\}, S = \{X_{i-1}\}$ in the above. Clearly, $S$ does not separated $A$ and $B$, and we see that we do not get independence of $X_i$ from its descendants.
+
+#### (2) Biased Coins
+
+##### (a) HMM Specification
+
+The hidden states are which coin we flipped at time $t$. The observations are the results of the coin flip at each time $t$.
+
+The emission distribution is Bernoulli where we consider landing heads to be a success. 
+$$
+P(Y_i\mid X_i = x_i, p_A, p_B) \sim Bernoulli(p_{x_i})
+$$
+
+The transition matrix for the Markov Chain is 
+$$
+\bordermatrix{
+    & A & B \cr
+    A & p & 1-p  \cr
+    B & 0 & 1
+  }.
+$$
+That is, the probability of switching from coin A to coin B is $p$. We always start with coin A, so the intial distributuion is 
+$$
+p_0(A) = 1, ~ p_0(B) = 0.
+$$
+
+##### (b) Forward Algorithm Matrix
+
+$$
+\begin{bmatrix}
+0.40 & 0.24p & 0.144p^2 & \cdots \\
+0    & 0.18(1-p) & 0.108p(1-p) + 0.081(1-p) & \cdots \\
+\end{bmatrix}
+$$
+
+##### (c) Implementation
+
+#### (3) Normal Normal Normal
 
