@@ -64,3 +64,54 @@ $$
 
 #### (3) Normal Normal Nights
 
+##### (a) Prior Predictive 
+
+$$
+\begin{pmatrix}
+X_1\\\delta_1
+\end{pmatrix}
+\sim N\left(
+ \begin{pmatrix} 0 \\ 0 \end{pmatrix},
+\Sigma_{X,\delta}=\begin{pmatrix} \sigma^2I & 0 \\ 0 & \Sigma_y \end{pmatrix}
+\right)
+$$
+So,
+$$
+CX_1 + d + \delta_1 = Y_1 \sim N\left(
+\begin{pmatrix} C & I \end{pmatrix}\begin{pmatrix} 0\\0 \end{pmatrix} + d,
+\begin{pmatrix} C & I \end{pmatrix} \Sigma_{X,\delta}\begin{pmatrix}C^T\\I\end{pmatrix}
+\right)
+$$
+
+##### (b) Joint Prior
+
+$P(X_1, X_2) = P(X_2\mid X_1)P(X_1)$, so 
+
+$$
+\begin{aligned}
+\Sigma_1 &= Var(X_1) = \sigma^2I \\
+\Sigma_1 &= Var(X_2\mid X_1) = \begin{pmatrix} A & I \end{pmatrix}\Sigma_{X,\epsilon}\begin{pmatrix} A \\ I \end{pmatrix}\\
+(X_1, X_2)  &\sim N\left(
+(\Sigma_1^{-1} + \Sigma_2^{-1})^{-1}(\Sigma_1^{-1}\cdot 0 + \Sigma_2^{-1}\cdot 0),
+(\Sigma_1^{-1} + \Sigma_2^{-1})^{-1}
+\right) \\
+&= N\left( 0, (\Sigma_1^{-1} + \Sigma_2^{-1})^{-1} \right)
+\end{aligned}
+$$
+
+##### (c) Posterior Distribution
+
+$$
+\begin{aligned}
+P(X_1\mid Y_1) 
+&\propto P(Y_1\mid X_1)P(X_1) \\
+&= N\left(
+d,
+\Sigma_c = \begin{pmatrix} C & I \end{pmatrix} \Sigma_{X,\delta}\begin{pmatrix}C^T\\I\end{pmatrix}
+\right) \cdot N(0, \Sigma_p = \sigma^2I) \\
+&= N\left(
+(\Sigma_c^{-1} + \Sigma_p^{-1})^{-1}(\Sigma_c^{-1}d),
+(\Sigma_c^{-1} + \Sigma_p^{-1})^{-1}
+\right)
+\end{aligned}
+$$
